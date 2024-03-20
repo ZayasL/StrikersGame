@@ -40,7 +40,7 @@ public class Goal : NetworkBehaviour
     {
         if (other.gameObject.tag == "Puck"&&!board.GameEnd)
         {
-            if (BlueSide) { board.left.Value += 1; }
+            if (!BlueSide) { board.left.Value += 1; }
             else { board.right.Value += 1; }
             sound[0].Play(0);
 

@@ -7,7 +7,8 @@ using Unity.Netcode;
 public class Timer : NetworkBehaviour
 {
     //https://www.youtube.com/watch?v=27uKJvOpdYw
-    private float duration = 1f*60f+1;
+    //Used this tutorial as foundation for my timer
+    private float duration = 1f*60f+1;  //
     private NetworkVariable<float> timer = new NetworkVariable<float>(0f);
     public TextMeshProUGUI display;
     public NetworkVariable<float> power = new NetworkVariable<float>(0f);
