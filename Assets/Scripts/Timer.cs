@@ -39,7 +39,7 @@ public class Timer : NetworkBehaviour
                     
                     power.Value = 0f;
                 }
-                else { ResetTime(); sound.Play(0); }
+                else { ResetTime(); sound.Play(0); } //reset timer and increase power when timer hits 0
                 
             }
         }
@@ -47,6 +47,7 @@ public class Timer : NetworkBehaviour
 
     }
 
+    //reset timer and increase power
     private void ResetTime()
     {
         if (IsServer)
@@ -55,6 +56,8 @@ public class Timer : NetworkBehaviour
             power.Value += 1f;
         }
     }
+
+    //turn a float value into minutes and seconds string
     public void UpdateTimerDisplay(float time)
     {
         if (IsServer) { timer.Value = time; }

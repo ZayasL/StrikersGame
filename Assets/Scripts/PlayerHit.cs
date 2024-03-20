@@ -6,10 +6,10 @@ using Unity.Netcode;
 
 public class PlayerHit : NetworkBehaviour
 {
-    public GameObject puck;
-    private PlayerAim aim;
-    private Timer timer;
-    private AudioSource[] sound;
+    public GameObject puck;  //puck ie the yellow ccircle we hit
+    private PlayerAim aim;   //script for aiming behavior
+    private Timer timer;    //script for time behavior
+    private AudioSource[] sound;   //sounds to play
     // Start is called before the first frame update
     void Start()
     {
@@ -26,14 +26,14 @@ public class PlayerHit : NetworkBehaviour
     }
     void OnHit(InputValue value)
     {   
-        if ((puck.transform.position - transform.position).sqrMagnitude < 3.0f)
+        if ((puck.transform.position - transform.position).sqrMagnitude < 3.0f)   //checks if player is near puck
         {
-            if((15f + (2f * timer.power.Value)) >= 25)
+            if((15f + (2f * timer.power.Value)) >= 25)   //if hit power is higher than 25 play a different sound
             {
                 sound[1].Play(0);
             }
-            else { sound[0].Play(0); }
-            puck.GetComponent<Rigidbody>().velocity = aim.direction * (15f+(2f* timer.power.Value));           
+            else { sound[0].Play(0); }   //play sound when hitting puck
+            puck.GetComponent<Rigidbody>().velocity = aim.direction * (15f+(2f* timer.power.Value));           //sets puck velocity to direction of hit
         }
         
     }

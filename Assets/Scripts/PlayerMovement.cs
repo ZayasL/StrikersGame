@@ -5,20 +5,22 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector3 move;
-    private CharacterController controller;
-    private Vector3 playerVelocity;
-    private float playerSpeed = 10.0f;
-    private float gravityValue = -9.81f;
-    public Transform spawn;
+    private Vector3 move; //vector to hold direction of movement
+    private CharacterController controller;  //character controller componenet
+    private Vector3 playerVelocity; //player gravity
+    private float playerSpeed = 10.0f;  //player speed
+    private float gravityValue = -9.81f; //gravity
+    public Transform spawn; //spawnpoint
 
-    public Material RED;
-    public Material BLUE;
+    public Material RED;  //red team color
+    public Material BLUE; //blue team color
 
     private void Start()
     {
         int bluePlayers = GameObject.Find("PlayerCount").GetComponent<Players>().blue.Count;
         int redPlayers = GameObject.Find("PlayerCount").GetComponent<Players>().red.Count;
+
+        //if more red players than blue, place player into red
         if(redPlayers >= bluePlayers)
         {
             spawn = GameObject.Find("BlueSpawn").transform;
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
             GameObject.Find("PlayerCount").GetComponent<Players>().blue.Add(gameObject);
             GetComponent<Renderer>().material = BLUE;
         }
+        //else place player into blue team
         else{
             spawn = GameObject.Find("RedSpawn").transform;
             gameObject.tag = "red";
@@ -33,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<Renderer>().material = RED;
         }
         controller = GetComponent<CharacterController>();
-        transform.position = spawn.position;
+        transform.position = spawn.position; //teleport player to spawnpoint
         
     }
     void OnMove(InputValue value)
@@ -43,9 +46,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(move * Time.deltaTime * playerSpeed); //move player
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        playerVelocity.y += gravityValue * Time.deltaTime;  //appply gravity to player
+        controller.Move(playerVelocity * Time.deltaTime);  //
     }
 }

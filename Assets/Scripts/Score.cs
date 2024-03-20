@@ -6,16 +6,16 @@ using Unity.Netcode;
 
 public class Score : NetworkBehaviour
 {
-    public TextMeshProUGUI leftDisplay;
-    public TextMeshProUGUI rightDisplay;
-    public TextMeshProUGUI winDisplay;
-    public bool GameEnd = false;
-    public NetworkVariable<int> left = new NetworkVariable<int>(0);
-    public NetworkVariable<int> right = new NetworkVariable<int>(0);
+    public TextMeshProUGUI leftDisplay; //blue side score
+    public TextMeshProUGUI rightDisplay; //red side score
+    public TextMeshProUGUI winDisplay;  //player win text
+    public bool GameEnd = false;    //boolean to determine if game has been won
+    public NetworkVariable<int> left = new NetworkVariable<int>(0);  //networked integer for left scoreboard
+    public NetworkVariable<int> right = new NetworkVariable<int>(0); //networked integer for right scoreboard
 
-    private AudioSource[] sound;
-    private bool playOnce = true;
-    private float delay = 0f;
+    private AudioSource[] sound; //sound to be played
+    private bool playOnce = true; //boolean to help sound play only once per win
+    private float delay = 0f; //float to create a delay before starting a new game
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +25,18 @@ public class Score : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameEnd)
+        if (!GameEnd) //calculate delay of 5 seconds
         {
             delay = Time.time + 5f;
         }
+
+        //if enough time elapsed restart the game
         if(GameEnd && Time.time >= delay)
         {
             restartRound();
         }
+
+        //left win
         if(left.Value >= 3)
         {
             winDisplay.text = "blue wins!!!!";
@@ -43,6 +47,7 @@ public class Score : NetworkBehaviour
             }
             
         }
+        //right win
         else if (right.Value >= 3)
         {
             winDisplay.text = "red wins!!!!";
@@ -53,6 +58,7 @@ public class Score : NetworkBehaviour
                 playOnce = false;
             }
         }
+        //hide display when no win
         else
         {
             winDisplay.text = "";
@@ -60,6 +66,8 @@ public class Score : NetworkBehaviour
         leftDisplay.text = left.Value.ToString()+"/3";
         rightDisplay.text = right.Value.ToString() + "/3";
     }
+
+    //reset game
     private void restartRound()
     {
         GameEnd = false;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrystalMovement : MonoBehaviour
 {
-    Transform origin;
+    Transform origin;  //original position of object
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +14,7 @@ public class CrystalMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0f, 0f, 100f * Time.deltaTime);
-        transform.localPosition = new Vector3(origin.localPosition.x, origin.localPosition.y + 0.002f*Mathf.Sin(Time.time), origin.localPosition.z);
+        transform.Rotate(0f, 0f, 100f * Time.deltaTime); //rotate object
+        transform.localPosition = new Vector3(origin.localPosition.x, origin.localPosition.y + 0.002f*Mathf.Sin(Time.time), origin.localPosition.z); //move the object up and down with a sine function
     }
 }

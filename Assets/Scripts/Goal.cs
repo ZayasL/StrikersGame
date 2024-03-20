@@ -30,7 +30,7 @@ public class Goal : NetworkBehaviour
             if (IsServer)
             {
                 collision.transform.position = Vector3.zero;
-                collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.left * 10 * (Random.Range(0, 2) * 2 - 1);
+                collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.left * 10 * (Random.Range(0, 2) * 2 - 1);   //sets puck velocity when being teleported back to middle, this is to combat camping the puck spawn
                 NewRound = false;
             }
         }
@@ -38,7 +38,7 @@ public class Goal : NetworkBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Puck"&&!board.GameEnd)
+        if (other.gameObject.tag == "Puck"&&!board.GameEnd)   //checks for puck collision
         {
             //increase score and play sound
             if (!BlueSide) { board.left.Value += 1; }
