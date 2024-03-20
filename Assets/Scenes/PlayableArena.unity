@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.11992778, g: 0.050818965, b: 0.197642, a: 1}
+  m_IndirectSpecularColor: {r: 0.11985755, g: 0.05086077, b: 0.19760104, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -187,7 +187,7 @@ MonoBehaviour:
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: 21adad27595d56c4299914e09aa3a074, type: 2}
-    TickRate: 60
+    TickRate: 45
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
     ConnectionData: 
@@ -1142,6 +1142,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 692852392, guid: 1dbe63b81f5a583488417534548d71e1, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 318955526
+      objectReference: {fileID: 0}
     - target: {fileID: 7219761080872721083, guid: 1dbe63b81f5a583488417534548d71e1, type: 3}
       propertyPath: m_RootOrder
       value: 7

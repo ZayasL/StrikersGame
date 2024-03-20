@@ -25,7 +25,7 @@ public class Goal : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!board.GameEnd && Time.time > delay && NewRound)
+        if(!board.GameEnd && Time.time > delay && NewRound) //move puck to center after 3 seconds after scoring
         {
             if (IsServer)
             {
@@ -40,10 +40,13 @@ public class Goal : NetworkBehaviour
     {
         if (other.gameObject.tag == "Puck"&&!board.GameEnd)
         {
+            //increase score and play sound
             if (!BlueSide) { board.left.Value += 1; }
             else { board.right.Value += 1; }
             sound[0].Play(0);
 
+
+            //save collision object and setup variables to delay respawn
             collision = other;
             delay = Time.time + 3f;
             NewRound = true;
