@@ -19,7 +19,7 @@ public class Timer : NetworkBehaviour
     {
         sound = GetComponent<AudioSource>();  
         board = GetComponent<Score>();
-        if (IsServer) { ResetTime(); } 
+        if (IsServer) { ResetTime(); }
     }
 
     // Update is called once per frame

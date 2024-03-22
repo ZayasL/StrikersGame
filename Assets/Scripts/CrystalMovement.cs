@@ -15,6 +15,6 @@ public class CrystalMovement : MonoBehaviour
     void Update()
     {
         transform.Rotate(0f, 0f, 100f * Time.deltaTime); //rotate object
-        transform.localPosition = new Vector3(origin.localPosition.x, origin.localPosition.y + 0.002f*Mathf.Sin(Time.time), origin.localPosition.z); //move the object up and down with a sine function
+        transform.localPosition = new Vector3(origin.localPosition.x, origin.localPosition.y + 0.001f*Mathf.Sin(Time.time), origin.localPosition.z); //move the object up and down with a sine function
     }
 }

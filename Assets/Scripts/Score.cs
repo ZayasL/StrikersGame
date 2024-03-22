@@ -16,9 +16,11 @@ public class Score : NetworkBehaviour
     private AudioSource[] sound; //sound to be played
     private bool playOnce = true; //boolean to help sound play only once per win
     private float delay = 0f; //float to create a delay before starting a new game
+    public Players respawn;
     // Start is called before the first frame update
     void Start()
     {
+        respawn = GameObject.Find("PlayerCount").GetComponent<Players>();
         sound = GetComponents<AudioSource>();
     }
 
@@ -74,5 +76,6 @@ public class Score : NetworkBehaviour
         left.Value = 0;
         right.Value = 0;
         playOnce = true;
+        respawn.ResetPlayers();
     }
 }

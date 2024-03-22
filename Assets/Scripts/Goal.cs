@@ -41,8 +41,10 @@ public class Goal : NetworkBehaviour
         if (other.gameObject.tag == "Puck"&&!board.GameEnd)   //checks for puck collision
         {
             //increase score and play sound
-            if (!BlueSide) { board.left.Value += 1; }
-            else { board.right.Value += 1; }
+            if(IsServer){
+                if (!BlueSide) { board.left.Value += 1; }
+                else { board.right.Value += 1; }
+            }
             sound[0].Play(0);
 
 
